@@ -1,0 +1,126 @@
+<div id=D__ID>
+    <section id=form_container__ID bp=576 style='display:flow-root;'>
+    	<div id=header__ID>
+    		Notes
+    	</div>
+    	<form id=F__ID>
+			<div>
+				<div w='100|100'>
+					<span>Contents</span>
+					<!--<textarea name=Contents style='height:300px'></textarea>-->
+					<div type=div name=Contents contenteditable="true" style='min-height:300px'>
+
+					</div>
+				</div>
+			</div>
+			<br>
+			<div>
+				<div w='100|100'>
+					<button id=submit__ID class="btn btn-secondary">Submit</button>
+				</div>
+			</div>
+    	</form>
+    </section>
+    <script>
+
+$vm.deserialize=function(record,form_id){
+    if(record==undefined || record.Data==undefined) return;
+    $.each(record.Data, function(name, value){
+        if(name!=''){
+            var $els = $(form_id+' *[name='+name+']');
+            $els.each(function(){
+                var $el=$(this);
+				var type = $el.attr('type');
+                switch(type){
+                    case 'checkbox':
+                        if(value=='off' || value=='0' || value=='' || value==undefined ) $el.prop('checked', false);
+                        else $el.prop('checked', true);
+                        break;
+                    case 'radio':
+                        if($el.attr('value')==value){
+                             $el.prop('checked', true);
+                        }
+                        break;
+                    case 'file':
+                        break;
+                    case 'text':
+                    case 'email':
+                    case 'textarea':
+                    case 'select':
+                        $el.val(value);
+                        break;
+                    case 'undefined':
+                        break;
+                    default:
+                        $el.val(value);
+                        break;
+					case 'div':
+					console.log(value)
+						value=$vm.text(value);
+					console.log(value)
+						value=value.replace(/\n/g,'<br>')
+					console.log(value)
+						$el.html(value);
+						break;
+                }
+            });
+        }
+    });
+}
+$vm.serialize=function(form_id){
+    var data={};
+    var a=$(form_id).serializeArray();
+    $.each(a, function () { data[this.name]=this.value || '';});
+	
+	$(form_id+" div[type=div]").each(function(){
+		data[$(this).attr('name')]=$(this).html();
+		alert($(this).attr('name'))
+		alert($(this).html())
+	})
+	
+	$(form_id+" input:checkbox:not(:checked)").each(function(){
+		data[this.name]="off";
+	})
+    $(form_id+" input:file").each(function(){
+        if(this.files.length==1){
+            data[this.name]=this.files[0].name;
+        }
+	})
+    return data;
+}
+
+
+    	function F__ID(){
+    		//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			new ResizeObserver($vm.responsive).observe(form_container__ID);
+			m.storage_type='s0';
+    		//-------------------------------------
+			var old_m_load=m.load;
+			m.load=function(){
+				old_m_load();
+
+
+			}
+            m.before_submit=function(data,index){
+				console.log($vm.serialize=('F__ID'));
+				return false;
+				/*
+				$vm["_sys_refresh_"+m.parent_table]=1; 		//force parent module to refresh
+				if(m.input!=undefined){
+					index.I2=m.input.UID; 					//parent UID -> I2, build relation
+				}
+				return true;
+				*/
+            }
+    		//-------------------------------------
+    	}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:800px;
+        }
+		VmInclude:__CURRENT_PATH__style.css
+        VmInclude:__COMPONENT__/f/form.01.css
+    </style>
+</div>

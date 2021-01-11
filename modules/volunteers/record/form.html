@@ -1,0 +1,103 @@
+﻿<div id=D__ID>
+    <section id=form_container__ID bp=576 style='display:flow-root;'>
+    	<div id=header__ID>
+    		Volunteer Form
+    	</div>
+    	<form id=F__ID>
+			<div>
+				<div w='100|50'>
+					<span>First Name</span>
+					<input type="text" name=First_Name required />
+				</div>
+				<div w='100|50'>
+					<span>Last Name</span>
+					<input type="text" name=Last_Name required />
+				</div>
+			</div>
+			<div>
+				<div w='100|50'>
+					<span>Phone</span>
+					<input type="text" name=Phone />
+				</div>
+				<div w='100|50'>
+					<span>Gender</span>
+						<select name=Gender>
+							<option value="" disabled selected>Gender</option>
+							<option>Male</option>
+							<option>Female</option>
+							<option>Indeterminate/Intersex/Unspecified</option>
+						</select>
+				</div>
+			</div>
+			<div>
+				<div w='100|50'>
+					<span>Email</span>
+					<input type=email name=Email ></input>
+				</div>
+				<div w='100|50'>
+					<span>Date of Birth</span>
+					<input type=date name=Date_of_Birth ></input>
+				</div>
+			</div>
+			<div>
+				<div w='100|50'>
+					<span>Postal Code</span>
+					<input type="text" name=Postcode />
+				</div>
+			</div>
+			<div id=div1__ID>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Lung_Cancer /> Lung Cancer</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Asthma /> Asthma</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=COPD  /> COPD (Chronic Obstructive Pulmonary Disease)</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Insomnia /> Insomnia</label>
+				</div>
+			</div>
+			<div>
+				<div w='100|100'>
+					<button id=submit__ID class="btn btn-secondary">Submit</button>
+				</div>
+			</div>
+    	</form>
+    </section>
+    <script>
+    	function F__ID(){
+    		//-------------------------------------
+			VmInclude:__COMPONENT__/f/form.01.js
+			new ResizeObserver($vm.responsive).observe(form_container__ID);
+			m.storage_type=='s0'
+			//-------------------------------------
+			var old_m_load=m.load;
+			m.load=function(){
+				old_m_load();
+			}      
+			//-------------------------------------
+			m.before_submit=function(data,index){
+				var s="";
+				var a=["Lung Cancer","Asthma","COPD","Insomnia"];
+				for(var i=0;i<a.length;i++){
+					if(data[a[i]]=='on') s=s+"1"; else s=s+"0";
+				}
+				index.I2=s;
+				return true;
+			}
+			//-------------------------------------
+		}
+    </script>
+    <style>
+        #form_container__ID{
+            max-width:900px;
+        }
+		VmInclude:__CURRENT_PATH__form.css
+        VmInclude:__COMPONENT__/f/form.01.css
+		#div1__ID:hover{
+			_background-color: #fff!Important;
+		}
+    </style>
+</div>

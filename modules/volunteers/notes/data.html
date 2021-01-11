@@ -1,0 +1,37 @@
+﻿<section>
+    VmInclude:__COMPONENT__/g/grid.01.html
+</section>
+<script>
+    function F__ID(){
+        //-------------------------------------
+        VmInclude:__COMPONENT__/g/grid.01.js
+        //-------------------------------------
+        var fields="Contents";
+        m.fields="_Form,"+fields+",Submit_date,Submitted_by,_Delete";
+        //-------------------------------------
+        m.load=function(){
+            if(m.input!=undefined){
+                m.query={I2:m.input.UID};
+            }
+        }
+        //-------------------------------------
+        m.new=function(){
+            console.log(1)
+            $vm.show_module(m.prefix+m.form_module,{UID:m.input.UID,A:m.input.A,goback:1});
+        }
+        //-------------------------------------
+        m.cell_render=function(records,I,field,td){
+            switch(field){
+                case 'Contents':
+                    td.html($vm.contenteditable_filter(records[I].Data[field]));
+                    td.css('min-width','800px');
+                    td.css('padding','6px');
+                    break;
+            }
+        }
+        //-------------------------------------
+    }
+</script>
+<style>
+    VmInclude:__COMPONENT__/g/grid.01.css
+</style>
