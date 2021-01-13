@@ -9,6 +9,7 @@
         var fields="First_Name, Last_Name,Phone, Gender, Email,Date_of_Birth,Postcode,Medical_research,Newsletters";
         m.fields="_Form,_Request_ID,"+fields+",_Notes,Submit_date,Submitted_by,_Delete";
         //-------------------------------------
+        m.options.view=m.Table;
         m.load=function(){
             if(m.self==1) m.options={self:1};
         }

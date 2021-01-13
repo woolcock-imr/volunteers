@@ -22,7 +22,20 @@
             url:$H+"/volunteers/record/data.html",
             Table:"volunteer",
             form_module:"volunteer-form", 
-            description:"Volunteer data"
+            description:"Volunteer data",
+            
+            notes_module:prefix+'volunteer-notes-data',
+            notes_table:"volunteer-notes",
+        },
+        "volunteer-view-project-1":{
+            title:'Volunteer for project 1',
+            url:$H+"/volunteers/record/view-project-1.html",
+            Table:"volunteer-project-1",
+            form_module:"volunteer-form", 
+            description:"Volunteer data",
+            
+            notes_module:prefix+'volunteer-notes-data',
+            notes_table:"volunteer-notes",
         },
         "volunteer-form":{
             title:'Volunteer form',

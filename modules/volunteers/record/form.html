@@ -45,7 +45,8 @@
 					<input type="text" name=Postcode />
 				</div>
 			</div>
-			<div id=div1__ID>
+			<hr>
+			<div>
 				<div w='100|50'>
 					<label><input type="checkbox" name=Lung_Cancer /> Lung Cancer</label>
 				</div>
@@ -57,6 +58,43 @@
 				</div>
 				<div w='100|50'>
 					<label><input type="checkbox" name=Insomnia /> Insomnia</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Chronic_Bronchitis /> Chronic Bronchitis</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Narcolepsy /> Narcolepsy</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Emphysema /> Emphysema</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=OSA /> Obstructive Sleep Apnoea (OSA)</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Rhinitis /> Rhinitis</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=Restless_Leg_Syndrome /> Restless Leg Syndrome</label>
+				</div>
+				<div w='100|50'>
+					<label><input type="checkbox" name=No /> I do not have a respiratory condition or sleep problem</label>
+				</div>
+			</div>
+			<hr>
+			<div>
+				<div w='100|100'>
+					<span>Registered Project Name</span>
+					<input type="text" name=Project_name />
+				</div>
+			</div>
+			<hr>
+			<div>
+				<div w='100|100'>
+					<label><input type="checkbox" name=Medical_research /> I agree to be contacted in relation to participating in medical research</label>
+				</div>
+				<div w='100|100'>
+					<label><input type="checkbox" name=Newsletters /> I would like to receive newsletters and updates</label>
 				</div>
 			</div>
 			<div>
@@ -80,11 +118,13 @@
 			//-------------------------------------
 			m.before_submit=function(data,index){
 				var s="";
-				var a=["Lung Cancer","Asthma","COPD","Insomnia"];
+				var a=["Lung Cancer","Asthma","COPD","Insomnia","Chronic_Bronchitis","Narcolepsy","Emphysema","OSA","Rhinitis","Restless_Leg_Syndrome","No"];
 				for(var i=0;i<a.length;i++){
 					if(data[a[i]]=='on') s=s+"1"; else s=s+"0";
 				}
 				index.I2=s;
+				index.I3=new Date(data.Date_of_Birth).toJSON();
+alert(index.I3)				
 				return true;
 			}
 			//-------------------------------------
@@ -92,7 +132,7 @@
     </script>
     <style>
         #form_container__ID{
-            max-width:900px;
+            max-width:1000px;
         }
 		VmInclude:__CURRENT_PATH__form.css
         VmInclude:__COMPONENT__/f/form.01.css
