@@ -27,6 +27,26 @@
             notes_module:prefix+'volunteer-notes-data',
             notes_table:"volunteer-notes",
         },
+        "volunteer-data-randomised-controlled":{
+            title:'volunteer-randomised-controlled',
+            url:$H+"/volunteers/record/data-randomised-controlled.html",
+            Table:"volunteer",
+            form_module:"volunteer-form", 
+            description:"Volunteer data",
+            
+            notes_module:prefix+'volunteer-notes-data',
+            notes_table:"volunteer-notes",
+        },
+        "volunteer-data-cansleep":{
+            title:'volunteer-randomised-controlled',
+            url:$H+"/volunteers/record/data-cansleep.html",
+            Table:"volunteer",
+            form_module:"volunteer-form", 
+            description:"Volunteer data",
+            
+            notes_module:prefix+'volunteer-notes-data',
+            notes_table:"volunteer-notes",
+        },
         "volunteer-view-project-1":{
             title:'Volunteer for project 1',
             url:$H+"/volunteers/record/view-project-1.html",

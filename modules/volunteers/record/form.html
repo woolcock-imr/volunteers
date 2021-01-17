@@ -84,8 +84,8 @@
 			<hr>
 			<div>
 				<div w='100|100'>
-					<span>Registered Project Name</span>
-					<input type="text" name=Project_name />
+					<span>Registered Study Name</span>
+					<input type="text" name=Study />
 				</div>
 			</div>
 			<hr>
@@ -116,17 +116,21 @@
 				old_m_load();
 			}      
 			//-------------------------------------
+			/*
 			m.before_submit=function(data,index){
 				var s="";
-				var a=["Lung Cancer","Asthma","COPD","Insomnia","Chronic_Bronchitis","Narcolepsy","Emphysema","OSA","Rhinitis","Restless_Leg_Syndrome","No"];
+				var a=["Lung_Cancer","Asthma","COPD","Insomnia","Chronic_Bronchitis","Narcolepsy","Emphysema","OSA","Rhinitis","Restless_Leg_Syndrome","No"];
 				for(var i=0;i<a.length;i++){
 					if(data[a[i]]=='on') s=s+"1"; else s=s+"0";
 				}
 				index.I2=s;
 				index.I3=new Date(data.Date_of_Birth).toJSON();
-alert(index.I3)				
+				index.I4=data.Gender;
+				index.I5=data.Postcode;
+				index.I6=data.Study;
 				return true;
 			}
+			*/
 			//-------------------------------------
 		}
     </script>

@@ -7,15 +7,43 @@
         VmInclude:__COMPONENT__/g/grid.01.js
         //-------------------------------------
         var fields="First_Name, Last_Name,Phone, Gender, Email,Date_of_Birth,Postcode,Medical_research,Newsletters";
-        m.fields="_Form,_Volunteer_ID,"+fields+",_Notes,Submit_date,Submitted_by,_Delete";
+        m.fields="_Form,_Request_ID,"+fields+",_Notes,Submit_date,Submitted_by,_Delete";
         //-------------------------------------
+        //m.options.view=m.Table;
         m.load=function(){
             if(m.self==1) m.options={self:1};
+        }
+        m.query={
+            "$and": [
+                {
+                    "Data.Insomnia": 'on'
+                },
+                {
+                    "Data.Date_of_Birth": {
+                        "$gte": new Date( new Date().setFullYear(new Date().getFullYear()-60)).toJSON()
+                    }
+                },
+                {
+                    "Data.Date_of_Birth": {
+                        "$lte": new Date( new Date().setFullYear(new Date().getFullYear()-35)).toJSON()
+                    }
+                },
+                {
+                    "Data.Postcode": {
+                        "$gte": "2000"
+                    }
+                },
+                {
+                    "Data.Postcode": {
+                        "$lt": "3000"
+                    }
+                }
+            ]
         }
         //-------------------------------------
         m.cell_render=function(records,I,field,td){
             switch(field){
-                case '_Volunteer_ID':
+                case '_Request_ID':
                     td.html(records[I].UID);
                     break;
                 case '_Notes':
